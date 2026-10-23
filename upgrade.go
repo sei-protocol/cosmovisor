@@ -105,7 +105,7 @@ func GetDownloadURL(info *UpgradeInfo) (string, error) {
 	doc := strings.TrimSpace(info.Info)
 	// if this is a url, then we download that and try to get a new doc with the real info
 	if _, err := url.Parse(doc); err == nil {
-		tmpDir, err := io.TempDir("", "upgrade-manager-reference")
+		tmpDir, err := os.MkdirTemp("", "upgrade-manager-reference")
 		if err != nil {
 			return "", fmt.Errorf("create tempdir for reference file: %w", err)
 		}
@@ -116,7 +116,7 @@ func GetDownloadURL(info *UpgradeInfo) (string, error) {
 			return "", fmt.Errorf("downloading reference link %s: %w", doc, err)
 		}
 
-		refBytes, err := io.ReadFile(refPath)
+		refBytes, err := os.ReadFile(refPath)
 		if err != nil {
 			return "", fmt.Errorf("reading downloaded reference: %w", err)
 		}
