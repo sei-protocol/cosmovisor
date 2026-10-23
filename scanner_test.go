@@ -5,7 +5,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/sei-protocol/sei-chain/sei-cosmos/cosmovisor"
+	"github.com/sei-protocol/cosmovisor"
 
 	"github.com/stretchr/testify/require"
 )
